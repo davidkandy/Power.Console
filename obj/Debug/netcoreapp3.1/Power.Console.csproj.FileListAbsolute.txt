@@ -1,0 +1,3 @@
+C:\Users\David\source\repos\Power.Console\obj\Debug\netcoreapp3.1\Power.Console.csprojAssemblyReference.cache
+C:\Users\David\source\repos\Power.Console\obj\Debug\netcoreapp3.1\Power.Console.AssemblyInfoInputs.cache
+C:\Users\David\source\repos\Power.Console\obj\Debug\netcoreapp3.1\Power.Console.AssemblyInfo.cs

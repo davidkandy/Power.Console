@@ -1,0 +1,10 @@
+C:\Users\David\source\repos\Power.Console\bin\Debug\netcoreapp3.1\Power.exe
+C:\Users\David\source\repos\Power.Console\bin\Debug\netcoreapp3.1\Power.deps.json
+C:\Users\David\source\repos\Power.Console\bin\Debug\netcoreapp3.1\Power.runtimeconfig.json
+C:\Users\David\source\repos\Power.Console\bin\Debug\netcoreapp3.1\Power.runtimeconfig.dev.json
+C:\Users\David\source\repos\Power.Console\bin\Debug\netcoreapp3.1\Power.dll
+C:\Users\David\source\repos\Power.Console\bin\Debug\netcoreapp3.1\Power.pdb
+C:\Users\David\source\repos\Power.Console\obj\Debug\netcoreapp3.1\Power.AssemblyInfoInputs.cache
+C:\Users\David\source\repos\Power.Console\obj\Debug\netcoreapp3.1\Power.AssemblyInfo.cs
+C:\Users\David\source\repos\Power.Console\obj\Debug\netcoreapp3.1\Power.dll
+C:\Users\David\source\repos\Power.Console\obj\Debug\netcoreapp3.1\Power.pdb
