@@ -5,21 +5,24 @@ using System.Threading;
 
 namespace Power.Countdown
 {
+
     public class PowerCountdown
     {
         #region Properties
 
         #region Statics
+
         const int SECONDS_PER_MINUTE = 60;
-        // const int MINUTES_PER_HOUR = ??
+        const int MINUTES_PER_HOUR = 60;
         // const int HOURS_PER_DAY = ?? <= Is this necessary
+
         #endregion
 
-        public int Hours { get; set; }
+        public int Hours { get; set; } 
         public int Minutes { get; set; }
-        public int Seconds { get; set; }
+        public int Seconds { get; set; } 
 
-        public int CountdownTime { get; private set; }
+        public int CountdownTime { get; set; }
 
         #endregion
 
@@ -29,10 +32,13 @@ namespace Power.Countdown
             CountdownTime = seconds;
 
             // Convert the countdown time from seconds to hours:minute:seconds
+
             Seconds = CountdownTime % SECONDS_PER_MINUTE;
-            // Minutes = ?
-            // Hours = ?
+            Minutes = Hours * MINUTES_PER_HOUR;
+            Hours = Seconds / 3600;
+
         }
+
         #endregion
 
         #region Methods
@@ -43,7 +49,7 @@ namespace Power.Countdown
                 Thread.Sleep(1000); // Wait for 1000 milliseconds
                 CountdownTime--;
 
-                if (Seconds <= 0)
+                if (Seconds > 0)
                 {
                     if (Minutes > 0) Minutes--;
                     else if (Hours > 0)
@@ -62,4 +68,6 @@ namespace Power.Countdown
         }
         #endregion
     }
+
+
 }
