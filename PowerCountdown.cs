@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
 namespace Power.Countdown
@@ -12,15 +10,15 @@ namespace Power.Countdown
 
         #region Statics
 
-        const int SECONDS_PER_MINUTE = 60;
-        const int MINUTES_PER_HOUR = 60;
+        public int SECONDS_PER_MINUTE = 60;
+        //public int MINUTES_PER_HOUR = 60;
         // const int HOURS_PER_DAY = ?? <= Is this necessary
 
         #endregion
 
-        public int Hours { get; set; } 
+        public int Hours { get; set; }
         public int Minutes { get; set; }
-        public int Seconds { get; set; } 
+        public int Seconds { get; set; }
 
         public int CountdownTime { get; set; }
 
@@ -34,8 +32,8 @@ namespace Power.Countdown
             // Convert the countdown time from seconds to hours:minute:seconds
 
             Seconds = CountdownTime % SECONDS_PER_MINUTE;
-            Minutes = Hours * MINUTES_PER_HOUR;
-            Hours = Seconds / 3600;
+            Minutes = (CountdownTime - (Hours * 3600)) / 60; //Convert both hours and minutes to an integer that doesn't have decimal points 
+            Hours = CountdownTime / 3600; //Convert both hours and minutes to an integer that doesn't have decimal points 
 
         }
 
@@ -49,16 +47,31 @@ namespace Power.Countdown
                 Thread.Sleep(1000); // Wait for 1000 milliseconds
                 CountdownTime--;
 
-                if (Seconds > 0)
+                //if (Seconds == 0) Minutes -= 1;
+                //Seconds--;
+
+                if (Minutes == 0) Hours -= 1;
                 {
-                    if (Minutes > 0) Minutes--;
-                    else if (Hours > 0)
+                    while (Seconds <= 0) Minutes -= 1;
                     {
-                        Minutes = 59;
-                        Hours--;
+                        if (Seconds == 0) Minutes -= 1;
+                        Seconds--;
+                        Empty -= 1;
                     }
                 }
-                else Seconds--;
+
+
+
+                if (Hours == 0 && Minutes == 0 && Seconds == 0)
+                    break;
+
+                //{ 
+                //    while (Minutes < 0) Hours -= 1;
+
+                //    else Seconds--;
+                //}
+
+
 
                 Console.WriteLine($"{Hours}:{Minutes}:{Seconds}");
             }
@@ -67,7 +80,7 @@ namespace Power.Countdown
             // Process.Start("shutdown", "/s /f /t 20");
         }
         #endregion
+
+
     }
-
-
 }
