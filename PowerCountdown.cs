@@ -6,6 +6,8 @@ namespace Power.Countdown
 
     public class PowerCountdown
     {
+
+
         #region Properties
 
         #region Statics
@@ -29,12 +31,10 @@ namespace Power.Countdown
         {
             CountdownTime = seconds;
 
-            // Convert the countdown time from seconds to hours:minute:seconds
-
-            Seconds = CountdownTime % SECONDS_PER_MINUTE;
-            Minutes = (CountdownTime - (Hours * 3600)) / 60; //Convert both hours and minutes to an integer that doesn't have decimal points 
-            Hours = CountdownTime / 3600; //Convert both hours and minutes to an integer that doesn't have decimal points 
-
+            //Convert the countdown time from seconds to hours:minute:seconds
+            Hours = CountdownTime / 3600;
+            Minutes = (CountdownTime - (Hours * 3600)) / 60; 
+            Seconds = CountdownTime - ((Hours * 3600) + (Minutes * 60)) ;
         }
 
         #endregion
@@ -47,23 +47,21 @@ namespace Power.Countdown
                 Thread.Sleep(1000); // Wait for 1000 milliseconds
                 CountdownTime--;
 
-                //if (Seconds == 0) Minutes -= 1;
-                //Seconds--;
-
-                if (Minutes == 0) Hours -= 1;
-                {
-                    while (Seconds <= 0) Minutes -= 1;
-                    {
-                        if (Seconds == 0) Minutes -= 1;
-                        Seconds--;
-                        Empty -= 1;
-                    }
-                }
-
-
-
                 if (Hours == 0 && Minutes == 0 && Seconds == 0)
                     break;
+
+                while (Minutes < 0)
+                {
+                    Hours -= 1;
+                }
+
+                if (Seconds == 0)
+                {
+                    Minutes -= 1;
+                }
+
+                Seconds--;
+
 
                 //{ 
                 //    while (Minutes < 0) Hours -= 1;
