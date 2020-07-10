@@ -13,7 +13,7 @@ namespace Power
 
             // Generate a random number each time
             Random random = new Random();
-            int seconds = random.Next(60, 70);
+            int seconds = random.Next(60, 1000);
 
             
 

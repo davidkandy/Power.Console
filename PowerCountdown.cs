@@ -44,13 +44,26 @@ namespace Power.Countdown
         {
             while (CountdownTime > 0)
             {
-                Thread.Sleep(1000); // Wait for 1000 milliseconds
+                Thread.Sleep(1000); // Wait for 1000 milliseconds. For test purposes you can decrease the value from 1000 to something much faster. Say 200
                 CountdownTime--;
 
                 if (Hours == 0 && Minutes == 0 && Seconds == 0)
                     break;
 
+                // Changed 'while' to 'if'
+                // 'while' is continous running code. If the minutes was greater than one, 
+                // your app will likely keep deducting the hours forever.
+
+                /*
+                 * Old code
                 while (Minutes < 0)
+                {
+                    Hours -= 1;
+                }
+                */
+
+                /*New Code*/
+                if (Minutes < 0)
                 {
                     Hours -= 1;
                 }
@@ -58,9 +71,12 @@ namespace Power.Countdown
                 if (Seconds == 0)
                 {
                     Minutes -= 1;
+                    Seconds = 59; // <= The secret sauce... \-(0_0)-/
                 }
-
-                Seconds--;
+                else
+                {
+                    Seconds--;
+                }
 
 
                 //{ 
