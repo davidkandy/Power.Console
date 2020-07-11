@@ -62,21 +62,60 @@ namespace Power.Countdown
                 }
                 */
 
-                /*New Code*/
-                if (Minutes < 0)
+                if (Minutes == 0 && Seconds ==0 )
                 {
                     Hours -= 1;
                 }
 
+                if (Hours <= 1 && Minutes == 0 && Seconds == 0)
+                {
+                    Hours = 0;
+                    Minutes = 60;
+                    {
+                        //if (Minutes == 60)
+                        //{
+                        //    Minutes = 59;
+                        //}
+                    }
+                }
+
+
+                if (Minutes <= 60)
+                {
+                    if (Seconds == 0 && Minutes >= 1)
+                    {
+                        Minutes -= 1;
+
+                        Seconds = 60;
+                    }
+                }
+
                 if (Seconds == 0)
                 {
-                    Minutes -= 1;
-                    Seconds = 59; // <= The secret sauce... \-(0_0)-/
+                    Seconds = 60;
                 }
-                else
-                {
-                    Seconds--;
-                }
+
+                Seconds--;
+
+
+                Console.WriteLine($"{Hours}:{Minutes}:{Seconds}");
+
+
+                ///*New Code*/
+                //if (Minutes < 0)
+                //{
+                //    Hours -= 1;
+                //}
+                //
+                //if (Seconds == 0)
+                //{
+                //    Minutes -= 1;
+                //    Seconds = 59; // <= The secret sauce... \-(0_0)-/
+                //}
+                //else
+                //{
+                //    Seconds--;
+                //}
 
 
                 //{ 
@@ -87,7 +126,6 @@ namespace Power.Countdown
 
 
 
-                Console.WriteLine($"{Hours}:{Minutes}:{Seconds}");
             }
 
             Console.WriteLine("Time is up!!!");
