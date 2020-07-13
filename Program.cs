@@ -13,9 +13,7 @@ namespace Power
 
             // Generate a random number each time
             Random random = new Random();
-            int seconds = random.Next(3600, 3605);
-
-            
+            int seconds = 36045;
 
             Console.WriteLine($"Hello there. I'll be counting down to {seconds}");
             Console.WriteLine("");

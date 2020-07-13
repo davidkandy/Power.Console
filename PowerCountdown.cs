@@ -44,90 +44,79 @@ namespace Power.Countdown
         {
             while (CountdownTime > 0)
             {
-                Thread.Sleep(1000); // Wait for 1000 milliseconds. For test purposes you can decrease the value from 1000 to something much faster. Say 200
+                Thread.Sleep(100); // Wait for 1000 milliseconds. For test purposes you can decrease the value from 1000 to something much faster. Say 200
                 CountdownTime--;
 
                 if (Hours == 0 && Minutes == 0 && Seconds == 0)
                     break;
 
-                // Changed 'while' to 'if'
-                // 'while' is continous running code. If the minutes was greater than one, 
-                // your app will likely keep deducting the hours forever.
-
-                /*
-                 * Old code
-                while (Minutes < 0)
+                else if (Hours == 12 && Minutes == 0 && Seconds == 0)
                 {
                     Hours -= 1;
+                    Minutes = 60;
                 }
-                */
 
-                if (Minutes == 0 && Seconds ==0 )
-                {
-                    Hours -= 1;
-                }
 
                 if (Hours <= 1 && Minutes == 0 && Seconds == 0)
                 {
                     Hours = 0;
                     Minutes = 60;
                     {
-                        //if (Minutes == 60)
-                        //{
-                        //    Minutes = 59;
-                        //}
+                        if (Hours <= 12 && Seconds <= 60)
+                        {
+                            Minutes = 60;
+                        }
                     }
-                }
 
+                }
 
                 if (Minutes <= 60)
                 {
                     if (Seconds == 0 && Minutes >= 1)
                     {
                         Minutes -= 1;
-
                         Seconds = 60;
                     }
                 }
 
-                if (Seconds == 0)
-                {
-                    Seconds = 60;
-                }
-
+                if (Seconds == 0)Seconds = 60;
                 Seconds--;
 
+                //Getting the Time format right
 
-                Console.WriteLine($"{Hours}:{Minutes}:{Seconds}");
 
-
-                ///*New Code*/
-                //if (Minutes < 0)
+                //if (Hours <= 9 && Minutes <= 9 && Seconds <= 9)
                 //{
-                //    Hours -= 1;
+                //    Console.WriteLine($"{0:0}{Hours}:{0:0}{Minutes}:{0:0}{Seconds}");
                 //}
-                //
-                //if (Seconds == 0)
+
+                //if (Hours <= 9 && Minutes <= 9 && Seconds >= 10)
                 //{
-                //    Minutes -= 1;
-                //    Seconds = 59; // <= The secret sauce... \-(0_0)-/
+                //    Console.WriteLine($"{0:0}{Hours}:{0:0}{Minutes}:{Seconds}");
                 //}
-                //else
+
+                //if (Hours <= 9 && Minutes >= 10 && Seconds <= 9)
                 //{
-                //    Seconds--;
+                //    Console.WriteLine($"{0:0}{Hours}:{Minutes}:{0:0}{Seconds}");
                 //}
 
-
-                //{ 
-                //    while (Minutes < 0) Hours -= 1;
-
-                //    else Seconds--;
+                //if (Hours <= 9 && Minutes >= 10 && Seconds >= 10)
+                //{
+                //    Console.WriteLine($"{0:0}{Hours}:{Minutes}:{Seconds}");
                 //}
 
+                //if (Hours >= 10 && Minutes <= 9 && Seconds <= 9)
+                //{
+                //    Console.WriteLine($"{Hours}:{0:0}{Minutes}:{0:0}{Seconds}");
+                //}
+                
+                //if (Hours >= 10 && Minutes >= 10 && Seconds >= 10)
+                //{
+                    Console.WriteLine($"{Hours}:{Minutes}:{Seconds}");
+                //}
 
 
             }
-
             Console.WriteLine("Time is up!!!");
             // Process.Start("shutdown", "/s /f /t 20");
         }
