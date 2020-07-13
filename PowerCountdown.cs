@@ -14,10 +14,11 @@ namespace Power.Countdown
 
         public int SECONDS_PER_MINUTE = 60;
         //public int MINUTES_PER_HOUR = 60;
-        // const int HOURS_PER_DAY = ?? <= Is this necessary
+        //const int HOURS_PER_DAY = ?? <= Is this necessary
 
         #endregion
 
+        #region Public Properties
         public int Hours { get; set; }
         public int Minutes { get; set; }
         public int Seconds { get; set; }
@@ -44,30 +45,28 @@ namespace Power.Countdown
         {
             while (CountdownTime > 0)
             {
-                Thread.Sleep(1); // Wait for 1000 milliseconds. For test purposes you can decrease the value from 1000 to something much faster. Say 200
+                Thread.Sleep(10); // Wait for 1000 milliseconds. For test purposes you can decrease the value from 1000 to something much faster. Say 200
                 CountdownTime--;
 
                 if (Hours == 0 && Minutes == 0 && Seconds == 0)
                     break;
 
-                else if (Hours == 12 && Minutes == 0 && Seconds == 0)
+                if (Hours <= 12 && Minutes == 0 && Seconds == 0)
                 {
                     Hours -= 1;
                     Minutes = 60;
                 }
-
-
+                
                 if (Hours <= 1 && Minutes == 0 && Seconds == 0)
                 {
-                    Hours = 0;
                     Minutes = 60;
+                    Hours = 0;
                     {
                         if (Hours <= 12 && Seconds <= 60)
                         {
                             Minutes = 60;
                         }
                     }
-
                 }
 
                 if (Minutes <= 60)
@@ -82,38 +81,40 @@ namespace Power.Countdown
                 if (Seconds == 0)Seconds = 60;
                 Seconds--;
 
+                Console.WriteLine($"{Hours}:{Minutes}:{Seconds}");
+
                 //Getting the Time format right
 
+                //if (Hours >= 10 && Minutes <= 9 && Seconds <= 9)
+                //{
+                //    Console.WriteLine($"{Hours}:{0:0}{Minutes}:{0:0}{Seconds}");
+                //}
+                //
+                //if (Hours <= 9 && Minutes >= 10 && Seconds <= 9)
+                //{
+                //    Console.WriteLine($"{0:0}{Hours}:{Minutes}:{0:0}{Seconds}");
+                //}
+                //
+                //if (Hours <= 9 && Minutes <= 9 && Seconds >= 10)
+                //{
+                //    Console.WriteLine($"{0:0}{Hours}:{0:0}{Minutes}:{Seconds}");
+                //}
+                //
+                //if (Hours <= 9 && Minutes >= 10 && Seconds >= 10)
+                //{
+                //    Console.WriteLine($"{0:0}{Hours}:{Minutes}:{Seconds}");
+                //}
+                //
+                //if (Hours <= 9 && Minutes <= 9 && Seconds <= 9)
+                //{
+                //    Console.WriteLine($"{0:0}{Hours}:{0:0}{Minutes}:{0:0}{Seconds}");
+                //}
 
-                if (Hours <= 9 && Minutes <= 9 && Seconds <= 9)
-                {
-                    Console.WriteLine($"{0:0}{Hours}:{0:0}{Minutes}:{0:0}{Seconds}");
-                }
+                //if (Hours >= 10 && Minutes >= 10 && Seconds >= 10)
+                //{
+                //    Console.WriteLine($"{Hours}:{Minutes}:{Seconds}");
+                //}
 
-                if (Hours <= 9 && Minutes <= 9 && Seconds >= 10)
-                {
-                    Console.WriteLine($"{0:0}{Hours}:{0:0}{Minutes}:{Seconds}");
-                }
-
-                if (Hours <= 9 && Minutes >= 10 && Seconds <= 9)
-                {
-                    Console.WriteLine($"{0:0}{Hours}:{Minutes}:{0:0}{Seconds}");
-                }
-
-                if (Hours <= 9 && Minutes >= 10 && Seconds >= 10)
-                {
-                    Console.WriteLine($"{0:0}{Hours}:{Minutes}:{Seconds}");
-                }
-
-                if (Hours >= 10 && Minutes <= 9 && Seconds <= 9)
-                {
-                    Console.WriteLine($"{Hours}:{0:0}{Minutes}:{0:0}{Seconds}");
-                }
-                
-                if (Hours >= 10 && Minutes >= 10 && Seconds >= 10)
-                {
-                    Console.WriteLine($"{Hours}:{Minutes}:{Seconds}");
-                }
 
 
             }
@@ -122,6 +123,7 @@ namespace Power.Countdown
         }
         #endregion
 
+        #endregion
 
     }
 }
