@@ -44,7 +44,7 @@ namespace Power.Countdown
         {
             while (CountdownTime > 0)
             {
-                Thread.Sleep(100); // Wait for 1000 milliseconds. For test purposes you can decrease the value from 1000 to something much faster. Say 200
+                Thread.Sleep(1); // Wait for 1000 milliseconds. For test purposes you can decrease the value from 1000 to something much faster. Say 200
                 CountdownTime--;
 
                 if (Hours == 0 && Minutes == 0 && Seconds == 0)
@@ -85,35 +85,35 @@ namespace Power.Countdown
                 //Getting the Time format right
 
 
-                //if (Hours <= 9 && Minutes <= 9 && Seconds <= 9)
-                //{
-                //    Console.WriteLine($"{0:0}{Hours}:{0:0}{Minutes}:{0:0}{Seconds}");
-                //}
+                if (Hours <= 9 && Minutes <= 9 && Seconds <= 9)
+                {
+                    Console.WriteLine($"{0:0}{Hours}:{0:0}{Minutes}:{0:0}{Seconds}");
+                }
 
-                //if (Hours <= 9 && Minutes <= 9 && Seconds >= 10)
-                //{
-                //    Console.WriteLine($"{0:0}{Hours}:{0:0}{Minutes}:{Seconds}");
-                //}
+                if (Hours <= 9 && Minutes <= 9 && Seconds >= 10)
+                {
+                    Console.WriteLine($"{0:0}{Hours}:{0:0}{Minutes}:{Seconds}");
+                }
 
-                //if (Hours <= 9 && Minutes >= 10 && Seconds <= 9)
-                //{
-                //    Console.WriteLine($"{0:0}{Hours}:{Minutes}:{0:0}{Seconds}");
-                //}
+                if (Hours <= 9 && Minutes >= 10 && Seconds <= 9)
+                {
+                    Console.WriteLine($"{0:0}{Hours}:{Minutes}:{0:0}{Seconds}");
+                }
 
-                //if (Hours <= 9 && Minutes >= 10 && Seconds >= 10)
-                //{
-                //    Console.WriteLine($"{0:0}{Hours}:{Minutes}:{Seconds}");
-                //}
+                if (Hours <= 9 && Minutes >= 10 && Seconds >= 10)
+                {
+                    Console.WriteLine($"{0:0}{Hours}:{Minutes}:{Seconds}");
+                }
 
-                //if (Hours >= 10 && Minutes <= 9 && Seconds <= 9)
-                //{
-                //    Console.WriteLine($"{Hours}:{0:0}{Minutes}:{0:0}{Seconds}");
-                //}
+                if (Hours >= 10 && Minutes <= 9 && Seconds <= 9)
+                {
+                    Console.WriteLine($"{Hours}:{0:0}{Minutes}:{0:0}{Seconds}");
+                }
                 
-                //if (Hours >= 10 && Minutes >= 10 && Seconds >= 10)
-                //{
+                if (Hours >= 10 && Minutes >= 10 && Seconds >= 10)
+                {
                     Console.WriteLine($"{Hours}:{Minutes}:{Seconds}");
-                //}
+                }
 
 
             }
