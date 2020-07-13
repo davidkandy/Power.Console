@@ -44,7 +44,7 @@ namespace Power.Countdown
         {
             while (CountdownTime > 0)
             {
-                Thread.Sleep(1); // Wait for 1000 milliseconds. For test purposes you can decrease the value from 1000 to something much faster. Say 200
+                Thread.Sleep(100); // Wait for 1000 milliseconds. For test purposes you can decrease the value from 1000 to something much faster. Say 200
                 CountdownTime--;
 
                 if (Hours == 0 && Minutes == 0 && Seconds == 0)
@@ -84,7 +84,7 @@ namespace Power.Countdown
 
                 //Getting the Time format right
 
-
+                /*
                 if (Hours <= 9 && Minutes <= 9 && Seconds <= 9)
                 {
                     Console.WriteLine($"{0:0}{Hours}:{0:0}{Minutes}:{0:0}{Seconds}");
@@ -114,8 +114,9 @@ namespace Power.Countdown
                 {
                     Console.WriteLine($"{Hours}:{Minutes}:{Seconds}");
                 }
+                */
 
-
+                Console.WriteLine($"{Hours}:{Minutes}:{Seconds}");
             }
             Console.WriteLine("Time is up!!!");
             // Process.Start("shutdown", "/s /f /t 20");
