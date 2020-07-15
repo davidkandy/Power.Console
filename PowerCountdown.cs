@@ -10,9 +10,9 @@ namespace Power.Countdown
 
         #region Statics
 
-        public int SECONDS_PER_MINUTE = 60;
-        //public int MINUTES_PER_HOUR = 60;
-        //const int HOURS_PER_DAY = ?? <= Is this necessary
+        const int SECONDS_PER_MINUTE = 60;
+        const int MINUTES_PER_HOUR = 60;
+        const int HOURS_PER_SECOND = 3600;
 
         #endregion
 
@@ -21,7 +21,7 @@ namespace Power.Countdown
         public int Minutes { get; set; }
         public int Seconds { get; set; }
 
-        public int CountdownTime { get; set; }
+        public int CountdownTime { get; private set; }
 
         #endregion
 
@@ -31,9 +31,9 @@ namespace Power.Countdown
             CountdownTime = seconds;
 
             //Convert the countdown time from seconds to hours:minute:seconds
-            Hours = CountdownTime / 3600;
-            Minutes = (CountdownTime - (Hours * 3600)) / 60; 
-            Seconds = CountdownTime - ((Hours * 3600) + (Minutes * 60)) ;
+            Hours = CountdownTime / HOURS_PER_SECOND;
+            Minutes = (CountdownTime - (Hours * HOURS_PER_SECOND)) / MINUTES_PER_HOUR;
+            Seconds = CountdownTime - ((Hours * HOURS_PER_SECOND) + (Minutes * MINUTES_PER_HOUR));
         }
 
         #endregion
@@ -43,34 +43,51 @@ namespace Power.Countdown
         {
             while (CountdownTime > 0)
             {
-                Thread.Sleep(1); 
+                Thread.Sleep(10); 
                 CountdownTime--;
 
+                /*
+                 * Don't limit your apps unless it is really necessary.
+                 * Imagine if gmail clients were unable to send mails to other mail services like hotmail or zoho.
+                 * That's an unnecessary limitation, don't you think?
                 if (CountdownTime > 86400)
                 {
                     Console.WriteLine("Time choosen is out of bound");
                     break;
                 }
+                */
 
                 if (Hours == 0 && Minutes == 0 && Seconds == 0)
                     break;
 
+                /*
+                 * Old Code => Removed the day limit
                 if (Hours <= 24 && Minutes == 0 && Seconds == 0)
                 {
                     Hours -= 1;
                     Minutes = 60;
                 }
-                
+                */
+
+                if (Hours > 0 && Minutes == 0 && Seconds == 0)
+                {
+                    Hours -= 1;
+                    Minutes = 60;
+                }
+
                 if (Hours <= 1 && Minutes == 0 && Seconds == 0)
                 {
                     Minutes = 60;
                     Hours = 0;
+                    /*
+                     * This doesn't look necessary...
                     {
                         if (Hours <= 24 && Seconds <= 60)
                         {
                             Minutes = 60;
                         }
                     }
+                    */
                 }
 
                 if (Minutes <= 60)
@@ -85,22 +102,36 @@ namespace Power.Countdown
                 if (Seconds == 0)Seconds = 60;
                 Seconds--;
 
-                
-                string DoubleNumber(int number)          //This doesn't seem to work 
-                {                                        //This doesn't seem to work 
-                    if (Hours <= 9) return "0" + number; //This doesn't seem to work 
-                    return number;                       //This doesn't seem to work 
-                }                                        //This doesn't seem to work 
 
-                //Console.WriteLine("DoubleNumber(Seconds)");
-
+                /*
+                 * You can't create a function within a function.
+                string DoubleNumber(int number)          
+                {                                        
+                    if (Hours <= 9) return "0" + number; 
+                    return number;                       
+                }                                        
+                */
 
                 //$"Integer padded to two places: {x:D2}
-                Console.WriteLine($"{Hours:D2}:{Minutes:D2}:{Seconds:D2}");
+                // Console.WriteLine($"{Hours:D2}:{Minutes:D2}:{Seconds:D2}"); <= Clever, we'll be using this in the main app.
 
+                // Cute APIs like string.Format() may not always be available.
+                // Imagine if you were writing CMD code. What would you do??
+                // Programmers should know how to improvise when necessary.
+                string hours = DoubleNumber(Hours),
+                    minutes = DoubleNumber(Minutes),
+                    seconds = DoubleNumber(Seconds);
+
+                Console.WriteLine($"{hours}:{minutes}:{seconds}");
             }
             Console.WriteLine("Time is up!!!");
             // Process.Start("shutdown", "/s /f /t 20");
+        }
+
+        private string DoubleNumber(int number)
+        {
+            if (number <= 9) return "0" + number;
+            return number.ToString();
         }
         #endregion
 
