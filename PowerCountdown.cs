@@ -43,13 +43,19 @@ namespace Power.Countdown
         {
             while (CountdownTime > 0)
             {
-                Thread.Sleep(100); // Wait for 1000 milliseconds. For test purposes you can decrease the value from 1000 to something much faster. Say 200
+                Thread.Sleep(1); 
                 CountdownTime--;
+
+                if (CountdownTime > 86400)
+                {
+                    Console.WriteLine("Time choosen is out of bound");
+                    break;
+                }
 
                 if (Hours == 0 && Minutes == 0 && Seconds == 0)
                     break;
 
-                if (Hours <= 12 && Minutes == 0 && Seconds == 0)
+                if (Hours <= 24 && Minutes == 0 && Seconds == 0)
                 {
                     Hours -= 1;
                     Minutes = 60;
@@ -60,7 +66,7 @@ namespace Power.Countdown
                     Minutes = 60;
                     Hours = 0;
                     {
-                        if (Hours <= 12 && Seconds <= 60)
+                        if (Hours <= 24 && Seconds <= 60)
                         {
                             Minutes = 60;
                         }
@@ -79,41 +85,18 @@ namespace Power.Countdown
                 if (Seconds == 0)Seconds = 60;
                 Seconds--;
 
+                
+                string DoubleNumber(int number)          //This doesn't seem to work 
+                {                                        //This doesn't seem to work 
+                    if (Hours <= 9) return "0" + number; //This doesn't seem to work 
+                    return number;                       //This doesn't seem to work 
+                }                                        //This doesn't seem to work 
+
+                //Console.WriteLine("DoubleNumber(Seconds)");
+
+
                 //$"Integer padded to two places: {x:D2}
-
                 Console.WriteLine($"{Hours:D2}:{Minutes:D2}:{Seconds:D2}");
-
-                //Getting the Time format right                                          
-                                                                                         
-                //if (Hours >= 10 && Minutes <= 9 && Seconds <= 9)                       
-                //{                                                                      
-                //    Console.WriteLine($"{Hours}:{0:0}{Minutes}:{0:0}{Seconds}");       
-                //}
-                //                                                                       
-                //if (Hours <= 9 && Minutes >= 10 && Seconds <= 9)                       
-                //{                                                                      
-                //    Console.WriteLine($"{0:0}{Hours}:{Minutes}:{0:0}{Seconds}");       
-                //}
-                //                                                                       
-                //if (Hours <= 9 && Minutes <= 9 && Seconds >= 10)                       
-                //{                                                                      
-                //    Console.WriteLine($"{0:0}{Hours}:{0:0}{Minutes}:{Seconds}");       
-                //}
-                //                                                                       
-                //if (Hours <= 9 && Minutes >= 10 && Seconds >= 10)                      
-                //{                                                                      
-                //    Console.WriteLine($"{0:0}{Hours}:{Minutes}:{Seconds}");            
-                //}
-                //                                                                       
-                //if (Hours <= 9 && Minutes <= 9 && Seconds <= 9)                        
-                //{                                                                      
-                //    Console.WriteLine($"{0:0}{Hours}:{0:0}{Minutes}:{0:0}{Seconds}");  
-                //}
-                                                                                         
-               //if (Hours >= 10 && Minutes >= 10 && Seconds >= 10)             
-               //{                                                              
-               //    Console.WriteLine($"{Hours}:{Minutes}:{Seconds}");         
-               //}
 
             }
             Console.WriteLine("Time is up!!!");
