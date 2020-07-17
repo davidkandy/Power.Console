@@ -10,9 +10,9 @@ namespace Power.Countdown
 
         #region Statics
 
-        const int SECONDS_PER_MINUTE = 60;
-        const int MINUTES_PER_HOUR = 60;
-        const int HOURS_PER_SECOND = 3600;
+        //const int SECONDS_PER_MINUTE = 60;
+        //const int MINUTES_PER_HOUR = 60;
+        //const int HOURS_PER_SECOND = 3600;
 
         #endregion
 
@@ -26,14 +26,14 @@ namespace Power.Countdown
         #endregion
 
         #region Constructors
-        public PowerCountdown(int seconds)
+        public PowerCountdown(int hours, int minutes, int timeleft)
         {
-            CountdownTime = seconds;
+            CountdownTime = timeleft;
 
             //Convert the countdown time from seconds to hours:minute:seconds
-            Hours = CountdownTime / HOURS_PER_SECOND;
-            Minutes = (CountdownTime - (Hours * HOURS_PER_SECOND)) / MINUTES_PER_HOUR;
-            Seconds = CountdownTime - ((Hours * HOURS_PER_SECOND) + (Minutes * MINUTES_PER_HOUR));
+            Hours = CountdownTime / 3600;                                       //Hours = CountdownTime / HOURS_PER_SECOND;
+            Minutes = (CountdownTime - (hours * 3600)) / 60;                 //Minutes = (CountdownTime - (Hours * HOURS_PER_SECOND)) / MINUTES_PER_HOUR;
+            Seconds = CountdownTime - (hours * 3600) - (minutes * 60);       //Seconds = CountdownTime - ((Hours * HOURS_PER_SECOND) + (Minutes * MINUTES_PER_HOUR));
         }
 
         #endregion
@@ -125,6 +125,12 @@ namespace Power.Countdown
                 Console.WriteLine($"{hours}:{minutes}:{seconds}");
             }
             Console.WriteLine("Time is up!!!");
+
+            for (int i = 0; i <= 3; i++)
+            {
+                Console.Beep();
+                Thread.Sleep(300);
+            }
             // Process.Start("shutdown", "/s /f /t 20");
         }
 

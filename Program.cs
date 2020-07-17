@@ -8,17 +8,18 @@ namespace Power
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            
+            Console.WriteLine("Hello!!!");
 
-            // Generate a random number each time
-            Random random = new Random();
-            int seconds = 3600 * 2;//random.Next(3600, 86400 * 10);
+            int hours = new Int32(); //random.Next(3600, 86400 * 10);
+            int minutes = new Int32();
+            int seconds = new Int32();
 
-            Console.WriteLine($"Hello there. I'll be counting down to {seconds} seconds");
+            Console.WriteLine($"Hello there. I'll be counting down to {hours} {minutes} {seconds} ");
             Console.WriteLine("");
 
-            var countdown = new PowerCountdown(seconds);
+            int timeleft = hours * 3600 + minutes * 60 + seconds;
+
+            var countdown = new PowerCountdown(timeleft);
             countdown.Start();
         }
     }
