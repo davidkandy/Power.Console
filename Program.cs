@@ -10,11 +10,25 @@ namespace Power
         {
             Console.WriteLine("Hello!!!");
 
-            int hours = new Int32(); //random.Next(3600, 86400 * 10);
-            int minutes = new Int32();
-            int seconds = new Int32();
+            //int hours = new Int32(); //random.Next(3600, 86400 * 10);
+            //int minutes = new Int32();
+            //int seconds = new Int32();
 
-            Console.WriteLine($"Hello there. I'll be counting down to {hours} {minutes} {seconds} ");
+
+            Console.Write("Enter the Hours");
+            string hoursAsAString = Console.ReadLine();
+            int hours = Convert.ToInt32(hoursAsAString);
+
+            Console.Write("Enter the Minutes");
+            string minutesAsAString = Console.ReadLine();
+            int minutes = Convert.ToInt32(hoursAsAString);
+
+            Console.Write("Enter the Seconds");
+            string secondsAsAString = Console.ReadLine();
+            int seconds = Convert.ToInt32(hoursAsAString);
+
+
+            Console.WriteLine($"Hello there. I'll be counting down to {hours}:{minutes}:{seconds} ");
             Console.WriteLine("");
 
             int timeleft = hours * 3600 + minutes * 60 + seconds;

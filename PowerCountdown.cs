@@ -31,7 +31,7 @@ namespace Power.Countdown
             CountdownTime = timeleft;
 
             //Convert the countdown time from seconds to hours:minute:seconds
-            Hours = CountdownTime / 3600;                                       //Hours = CountdownTime / HOURS_PER_SECOND;
+            Hours = CountdownTime / 3600;                                    //Hours = CountdownTime / HOURS_PER_SECOND;
             Minutes = (CountdownTime - (hours * 3600)) / 60;                 //Minutes = (CountdownTime - (Hours * HOURS_PER_SECOND)) / MINUTES_PER_HOUR;
             Seconds = CountdownTime - (hours * 3600) - (minutes * 60);       //Seconds = CountdownTime - ((Hours * HOURS_PER_SECOND) + (Minutes * MINUTES_PER_HOUR));
         }
@@ -43,7 +43,7 @@ namespace Power.Countdown
         {
             while (CountdownTime > 0)
             {
-                Thread.Sleep(10); 
+                Thread.Sleep(10);
                 CountdownTime--;
 
                 /*
@@ -99,7 +99,7 @@ namespace Power.Countdown
                     }
                 }
 
-                if (Seconds == 0)Seconds = 60;
+                if (Seconds == 0) Seconds = 60;
                 Seconds--;
 
 
@@ -131,6 +131,7 @@ namespace Power.Countdown
                 Console.Beep();
                 Thread.Sleep(300);
             }
+
             // Process.Start("shutdown", "/s /f /t 20");
         }
 
@@ -139,9 +140,11 @@ namespace Power.Countdown
             if (number <= 9) return "0" + number;
             return number.ToString();
         }
-        #endregion
-
-        #endregion
 
     }
+    #endregion
+
+    #endregion
+
 }
+
