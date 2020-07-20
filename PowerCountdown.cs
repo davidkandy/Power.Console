@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
-
 namespace Power.Countdown
 {
 
@@ -26,15 +26,16 @@ namespace Power.Countdown
         #endregion
 
         #region Constructors
-        public PowerCountdown(int hours, int minutes, int timeleft)
+        public PowerCountdown(int timeleft)
         {
             CountdownTime = timeleft;
 
             //Convert the countdown time from seconds to hours:minute:seconds
             Hours = CountdownTime / 3600;                                    //Hours = CountdownTime / HOURS_PER_SECOND;
-            Minutes = (CountdownTime - (hours * 3600)) / 60;                 //Minutes = (CountdownTime - (Hours * HOURS_PER_SECOND)) / MINUTES_PER_HOUR;
-            Seconds = CountdownTime - (hours * 3600) - (minutes * 60);       //Seconds = CountdownTime - ((Hours * HOURS_PER_SECOND) + (Minutes * MINUTES_PER_HOUR));
+            Minutes = (CountdownTime - (Hours * 3600)) / 60;                 //Minutes = (CountdownTime - (Hours * HOURS_PER_SECOND)) / MINUTES_PER_HOUR;
+            Seconds = CountdownTime - (Hours * 3600) - (Minutes * 60);       //Seconds = CountdownTime - ((Hours * HOURS_PER_SECOND) + (Minutes * MINUTES_PER_HOUR));
         }
+
 
         #endregion
 
@@ -124,15 +125,23 @@ namespace Power.Countdown
 
                 Console.WriteLine($"{hours}:{minutes}:{seconds}");
             }
+
             Console.WriteLine("Time is up!!!");
-
-            for (int i = 0; i <= 3; i++)
-            {
-                Console.Beep();
-                Thread.Sleep(300);
-            }
-
+            Ringtone();
             // Process.Start("shutdown", "/s /f /t 20");
+        }
+
+        private static void Ringtone()
+        {
+            try
+            {
+                string path = @"C:\Users\David\source\repos\Power.Console\Music\the-wrong-direction.mp3";
+                Process.Start(path);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"{ex}");
+            }
         }
 
         private string DoubleNumber(int number)
@@ -140,7 +149,6 @@ namespace Power.Countdown
             if (number <= 9) return "0" + number;
             return number.ToString();
         }
-
     }
     #endregion
 

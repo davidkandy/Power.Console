@@ -21,20 +21,21 @@ namespace Power
 
             Console.Write("Enter the Minutes");
             string minutesAsAString = Console.ReadLine();
-            int minutes = Convert.ToInt32(hoursAsAString);
+            int minutes = Convert.ToInt32(minutesAsAString);
 
             Console.Write("Enter the Seconds");
             string secondsAsAString = Console.ReadLine();
-            int seconds = Convert.ToInt32(hoursAsAString);
+            int seconds = Convert.ToInt32(secondsAsAString);
 
+            int timeleft = ((hours * 3600) + (minutes * 60) + seconds);
 
-            Console.WriteLine($"Hello there. I'll be counting down to {hours}:{minutes}:{seconds} ");
-            Console.WriteLine("");
-
-            int timeleft = hours * 3600 + minutes * 60 + seconds;
-
-            var countdown = new PowerCountdown(timeleft);
+            var countdown = new PowerCountdown (timeleft);
             countdown.Start();
+
+            //Console.WriteLine($"Hello there. I'll be counting down to {hours}:{minutes}:{seconds} ");
+            Console.WriteLine(""); //What's the purpose of this line 
+
+
         }
     }
 }
