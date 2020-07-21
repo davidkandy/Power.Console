@@ -29,11 +29,11 @@ namespace Power
 
             int timeleft = ((hours * 3600) + (minutes * 60) + seconds);
 
+            Console.WriteLine($"Hello there. I'll be counting down to {hours}:{minutes}:{seconds} ");
+
             var countdown = new PowerCountdown (timeleft);
             countdown.Start();
 
-            //Console.WriteLine($"Hello there. I'll be counting down to {hours}:{minutes}:{seconds} ");
-            Console.WriteLine(""); //What's the purpose of this line 
 
 
         }
