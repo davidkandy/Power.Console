@@ -36,6 +36,15 @@ namespace Power.Countdown
             Seconds = CountdownTime - (Hours * 3600) - (Minutes * 60);       //Seconds = CountdownTime - ((Hours * HOURS_PER_SECOND) + (Minutes * MINUTES_PER_HOUR));
         }
 
+        public PowerCountdown(int hours, int minutes, int seconds)
+        {
+            Hours = hours;
+            Minutes = minutes;
+            Seconds = seconds;
+            CountdownTime = ((hours * 3600) + (minutes * 60) + seconds);
+            // Mini Challenge. Remove CountdownTime from this class and still make everything work fine.
+        }
+
 
         #endregion
 
@@ -135,8 +144,11 @@ namespace Power.Countdown
         {
             try
             {
-                string path = @"C:\Users\David\source\repos\Power.Console\Music\the-wrong-direction.mp3";
-                Process.Start(path);
+                string path = @"Music\ringin.wav"; // Lol, no offense, but you have terrible taste in alarm sounds. Good taste in music, though... ο(-_-)o
+                ProcessStartInfo startInfo = new ProcessStartInfo(path);
+                startInfo.UseShellExecute = true; // <= Fix based on (https://stackoverflow.com/a/54763978/8058709). Error was due to the new .net core runtime
+
+                Process.Start(startInfo);
             }
             catch (Exception ex)
             {
