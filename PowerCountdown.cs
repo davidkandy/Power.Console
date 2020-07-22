@@ -1,21 +1,14 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading;
+using System.Media;
+using NAudio.Wave;
+
 namespace Power.Countdown
 {
 
     public class PowerCountdown
     {
-        #region Properties
-
-        #region Statics
-
-        //const int SECONDS_PER_MINUTE = 60;
-        //const int MINUTES_PER_HOUR = 60;
-        //const int HOURS_PER_SECOND = 3600;
-
-        #endregion
-
         #region Public Properties
         public int Hours { get; set; }
         public int Minutes { get; set; }
@@ -31,9 +24,18 @@ namespace Power.Countdown
             CountdownTime = timeleft;
 
             //Convert the countdown time from seconds to hours:minute:seconds
-            Hours = CountdownTime / 3600;                                    //Hours = CountdownTime / HOURS_PER_SECOND;
-            Minutes = (CountdownTime - (Hours * 3600)) / 60;                 //Minutes = (CountdownTime - (Hours * HOURS_PER_SECOND)) / MINUTES_PER_HOUR;
-            Seconds = CountdownTime - (Hours * 3600) - (Minutes * 60);       //Seconds = CountdownTime - ((Hours * HOURS_PER_SECOND) + (Minutes * MINUTES_PER_HOUR));
+
+            Hours = CountdownTime / 3600;                                    
+            Minutes = (CountdownTime - (Hours * 3600)) / 60;                 
+            Seconds = CountdownTime - (Hours * 3600) - (Minutes * 60);       
+        }
+
+        public PowerCountdown(int hours, int minutes, int seconds)
+        {
+            Hours = hours;
+            Minutes = minutes;
+            Seconds = seconds;
+            // Mini Challenge. Remove CountdownTime from this class and still make everything work fine.
         }
 
 
@@ -42,7 +44,7 @@ namespace Power.Countdown
         #region Methods
         public void Start()
         {
-            while (CountdownTime > 0)
+            while (true)
             {
                 Thread.Sleep(10);
                 CountdownTime--;
@@ -127,22 +129,36 @@ namespace Power.Countdown
             }
 
             Console.WriteLine("Time is up!!!");
-            Ringtone();
+
+            Audio();
+
+
+            //Ringtone()
             // Process.Start("shutdown", "/s /f /t 20");
         }
 
-        private static void Ringtone()
+        void Audio()
         {
-            try
-            {
-                string path = @"C:\Users\David\source\repos\Power.Console\Music\the-wrong-direction.mp3";
-                Process.Start(path);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"{ex}");
-            }
+            SoundPlayer audio = new SoundPlayer("C:/Users/David/source/repos/Power.Console/Music/ringin.wav");
+            audio.PlaySync();
         }
+
+
+        //private static void Ringtone()
+        //{
+        //    try
+        //    {
+        //        string path = @"Music\ringin.wav"; // Lol, no offense, but you have terrible taste in alarm sounds. Good taste in music, though... ο(-_-)o
+        //        ProcessStartInfo startInfo = new ProcessStartInfo(path);
+        //        startInfo.UseShellExecute = true; // <= Fix based on (https://stackoverflow.com/a/54763978/8058709). Error was due to the new .net core runtime
+        //
+        //        Process.Start(startInfo);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"{ex}");
+        //    }
+        //}
 
         private string DoubleNumber(int number)
         {
@@ -150,8 +166,6 @@ namespace Power.Countdown
             return number.ToString();
         }
     }
-    #endregion
-
     #endregion
 
 }

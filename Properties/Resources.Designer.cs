@@ -59,5 +59,24 @@ namespace Power.Countdown.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream ringin {
+            get {
+                return ResourceManager.GetStream("ringin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] the_wrong_direction {
+            get {
+                object obj = ResourceManager.GetObject("the_wrong_direction", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
