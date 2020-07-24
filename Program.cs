@@ -1,19 +1,20 @@
 ﻿using Power.Countdown;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Power
 {
     public class Program
     {
+        private IEnumerable<string> args;
 
         static void Main(string[] args)
         {
+            
             Console.WriteLine("Hello!!! Welcome to Power.Countdown");
 
-            //int hours = new Int32(); //random.Next(3600, 86400 * 10);
-            //int minutes = new Int32();
-            //int seconds = new Int32();
-
+            Console.WriteLine($"Hey, did you just say '{args.ElementAtOrDefault(0)}'?");
 
             Console.WriteLine("Set the timer below: ");
             Console.WriteLine("");
@@ -40,9 +41,17 @@ namespace Power
 
             countdown.Start();
 
-
-
+            ProcessArgs(string[], args);
         }
+
+        void ProcessArgs()
+        {
+            foreach (string argument in args)
+            {
+                Console.WriteLine(argument);
+            }
+        }
+
     }
 }
 
