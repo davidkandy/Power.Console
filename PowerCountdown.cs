@@ -19,15 +19,16 @@ namespace Power.Countdown
         #endregion
 
         #region Constructors
+
         public PowerCountdown(int timeleft)
         {
             CountdownTime = timeleft;
 
             //Convert the countdown time from seconds to hours:minute:seconds
 
-            Hours = CountdownTime / 3600;                                    
-            Minutes = (CountdownTime - (Hours * 3600)) / 60;                 
-            Seconds = CountdownTime - (Hours * 3600) - (Minutes * 60);       
+            Hours = CountdownTime / 3600;
+            Minutes = (CountdownTime - (Hours * 3600)) / 60;
+            Seconds = CountdownTime - (Hours * 3600) - (Minutes * 60);
         }
 
         public PowerCountdown(int hours, int minutes, int seconds)
@@ -35,10 +36,7 @@ namespace Power.Countdown
             Hours = hours;
             Minutes = minutes;
             Seconds = seconds;
-            // Mini Challenge. Remove CountdownTime from this class and still make everything work fine.
         }
-
-
         #endregion
 
         #region Methods
@@ -47,7 +45,6 @@ namespace Power.Countdown
             while (true)
             {
                 Thread.Sleep(10);
-                CountdownTime--;
 
                 /*
                  * Don't limit your apps unless it is really necessary.
@@ -63,15 +60,6 @@ namespace Power.Countdown
                 if (Hours == 0 && Minutes == 0 && Seconds == 0)
                     break;
 
-                /*
-                 * Old Code => Removed the day limit
-                if (Hours <= 24 && Minutes == 0 && Seconds == 0)
-                {
-                    Hours -= 1;
-                    Minutes = 60;
-                }
-                */
-
                 if (Hours > 0 && Minutes == 0 && Seconds == 0)
                 {
                     Hours -= 1;
@@ -82,15 +70,6 @@ namespace Power.Countdown
                 {
                     Minutes = 60;
                     Hours = 0;
-                    /*
-                     * This doesn't look necessary...
-                    {
-                        if (Hours <= 24 && Seconds <= 60)
-                        {
-                            Minutes = 60;
-                        }
-                    }
-                    */
                 }
 
                 if (Minutes <= 60)
@@ -105,15 +84,7 @@ namespace Power.Countdown
                 if (Seconds == 0) Seconds = 60;
                 Seconds--;
 
-
-                /*
-                 * You can't create a function within a function.
-                string DoubleNumber(int number)          
-                {                                        
-                    if (Hours <= 9) return "0" + number; 
-                    return number;                       
-                }                                        
-                */
+                //You can't create a function within a function.
 
                 //$"Integer padded to two places: {x:D2}
                 // Console.WriteLine($"{Hours:D2}:{Minutes:D2}:{Seconds:D2}"); <= Clever, we'll be using this in the main app.
@@ -121,44 +92,27 @@ namespace Power.Countdown
                 // Cute APIs like string.Format() may not always be available.
                 // Imagine if you were writing CMD code. What would you do??
                 // Programmers should know how to improvise when necessary.
+
                 string hours = DoubleNumber(Hours),
                     minutes = DoubleNumber(Minutes),
                     seconds = DoubleNumber(Seconds);
 
                 Console.WriteLine($"{hours}:{minutes}:{seconds}");
             }
-
             Console.WriteLine("Time is up!!!");
-
+            Audio();
+            Audio();
             Audio();
 
-
-            //Ringtone()
             // Process.Start("shutdown", "/s /f /t 20");
         }
+
 
         void Audio()
         {
             SoundPlayer audio = new SoundPlayer("C:/Users/David/source/repos/Power.Console/Music/ringin.wav");
             audio.PlaySync();
         }
-
-
-        //private static void Ringtone()
-        //{
-        //    try
-        //    {
-        //        string path = @"Music\ringin.wav"; // Lol, no offense, but you have terrible taste in alarm sounds. Good taste in music, though... ο(-_-)o
-        //        ProcessStartInfo startInfo = new ProcessStartInfo(path);
-        //        startInfo.UseShellExecute = true; // <= Fix based on (https://stackoverflow.com/a/54763978/8058709). Error was due to the new .net core runtime
-        //
-        //        Process.Start(startInfo);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"{ex}");
-        //    }
-        //}
 
         private string DoubleNumber(int number)
         {

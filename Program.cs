@@ -1,25 +1,20 @@
 ﻿using Power.Countdown;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Power
 {
     public class Program
     {
+        private IEnumerable<string> args;
 
         static void Main(string[] args)
         {
+            
             Console.WriteLine("Hello!!! Welcome to Power.Countdown");
 
-            //int hours = new Int32(); //random.Next(3600, 86400 * 10);
-            //int minutes = new Int32();
-            //int seconds = new Int32();
-
-
-            // Read a more on functions\methods.
-            // Their concept is key to development.
-            if (!ProcessArguments(args))
-                return;
-
+            Console.WriteLine($"Hey, did you just say '{args.ElementAtOrDefault(0)}'?");
 
             Console.WriteLine("Set the timer below: ");
             Console.WriteLine("");
@@ -46,34 +41,17 @@ namespace Power
 
             countdown.Start();
 
-
-
+            ProcessArgs(string[], args);
         }
 
-        static bool ProcessArguments(string[] args)
+        void ProcessArgs()
         {
-            if (args.Length <= 0)
-                return true;
-
-            // if (args.Contains("-s"))
-                // var countdown = new PowerCountdown(hours, minutes, seconds);
-                // countdown.Start()
-            // else
+            foreach (string argument in args)
             {
-                DisplayUsageInstructions();
-                return false;
+                Console.WriteLine(argument);
             }
         }
 
-        static void DisplayUsageInstructions()
-        {
-            Console.WriteLine("Welcome to Power.Console");
-            Console.WriteLine("USAGE: ");
-            Console.WriteLine("");
-            Console.WriteLine("");
-            Console.WriteLine("-s [CountdownSeconds]");
-            Console.WriteLine("");
-        }
     }
 }
 
