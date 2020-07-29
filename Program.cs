@@ -15,6 +15,12 @@ namespace Power
             //int seconds = new Int32();
 
 
+            // Read a more on functions\methods.
+            // Their concept is key to development.
+            if (!ProcessArguments(args))
+                return;
+
+
             Console.WriteLine("Set the timer below: ");
             Console.WriteLine("");
 
@@ -42,6 +48,31 @@ namespace Power
 
 
 
+        }
+
+        static bool ProcessArguments(string[] args)
+        {
+            if (args.Length <= 0)
+                return true;
+
+            // if (args.Contains("-s"))
+                // var countdown = new PowerCountdown(hours, minutes, seconds);
+                // countdown.Start()
+            // else
+            {
+                DisplayUsageInstructions();
+                return false;
+            }
+        }
+
+        static void DisplayUsageInstructions()
+        {
+            Console.WriteLine("Welcome to Power.Console");
+            Console.WriteLine("USAGE: ");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("-s [CountdownSeconds]");
+            Console.WriteLine("");
         }
     }
 }
