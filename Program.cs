@@ -55,27 +55,6 @@ namespace Power
             for (int i = 0; i < args.Length; i++)
             {
                 string arg = args[i];
-
-                if (arg == "-h")
-                {
-                    string number = args[i + 1];
-                    int.TryParse(number, out int hours);
-                    var countdown = new PowerCountdown(hours);
-                    countdown.Start();
-
-                    return false;
-                }
-
-                if (arg == "-m")
-                {
-                    string number = args[i + 1];
-                    int.TryParse(number, out int minutes);
-                    var countdown = new PowerCountdown(minutes);
-                    countdown.Start();
-
-                    return false;
-                }
-
                 if (arg == "-s")
                 {
                     string number = args[i + 1];
