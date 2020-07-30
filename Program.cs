@@ -80,6 +80,7 @@ namespace Power
             Console.WriteLine("USAGE: ");
             Console.WriteLine("");
             Console.WriteLine("");
+            Console.WriteLine("");
             Console.WriteLine("-s [CountdownSeconds]");
             Console.WriteLine("");
         }
