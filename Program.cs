@@ -7,15 +7,13 @@ namespace Power
 {
     public class Program
     {
-        // This was a little clever....
-        private IEnumerable<string> args;
-
+        /// <summary>
+        /// The Main methhod to Input parameters for the timer (Hours:Minutes:Seconds)
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {            
             Console.WriteLine("Hello!!! Welcome to Power.Countdown");
-
-            // Console.WriteLine($"Hey, did you just say '{args.ElementAtOrDefault(0)}'?");
-
 
             if (!ProcessArguments(args))
                 return;
@@ -36,28 +34,19 @@ namespace Power
             string secondsAsAString = Console.ReadLine();
             int seconds = Convert.ToInt32(secondsAsAString);
 
-            // int timeleft = ((hours * 3600) + (minutes * 60) + seconds); <= Really clever...
-
             Console.WriteLine($"Hello there. I'll be counting down to {hours}:{minutes}:{seconds} ");
 
-            // var countdown = new PowerCountdown(timeleft);
-
-            var countdown = new PowerCountdown(hours, minutes, seconds); // <= Check this out, though...
+            var countdown = new PowerCountdown(hours, minutes, seconds);
 
             countdown.Start();
 
-            // ProcessArgs(string[], args);
         }
 
-        /*
-        void ProcessArgs()
-        {
-            foreach (string argument in args)
-            {
-                Console.WriteLine(argument);
-            }
-        }
-        */
+        /// <summary>
+        /// Method to Process Arguments from the Console's terminal 
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         static bool ProcessArguments(string[] args)
         {
             if (args.Length <= 0)
@@ -66,6 +55,27 @@ namespace Power
             for (int i = 0; i < args.Length; i++)
             {
                 string arg = args[i];
+
+                if (arg == "-h")
+                {
+                    string number = args[i + 1];
+                    int.TryParse(number, out int hours);
+                    var countdown = new PowerCountdown(hours);
+                    countdown.Start();
+
+                    return false;
+                }
+
+                if (arg == "-m")
+                {
+                    string number = args[i + 1];
+                    int.TryParse(number, out int minutes);
+                    var countdown = new PowerCountdown(minutes);
+                    countdown.Start();
+
+                    return false;
+                }
+
                 if (arg == "-s")
                 {
                     string number = args[i + 1];
@@ -75,6 +85,8 @@ namespace Power
 
                     return false;
                 }
+
+
             }
 
             DisplayUsageInstructions();

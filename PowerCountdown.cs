@@ -24,8 +24,6 @@ namespace Power.Countdown
         {
             CountdownTime = timeleft;
 
-            //Convert the countdown time from seconds to hours:minute:seconds
-
             Hours = CountdownTime / 3600;
             Minutes = (CountdownTime - (Hours * 3600)) / 60;
             Seconds = CountdownTime - (Hours * 3600) - (Minutes * 60);
@@ -40,22 +38,15 @@ namespace Power.Countdown
         #endregion
 
         #region Methods
+        /// <summary>
+        /// The method to Start counting down
+        /// </summary>
         public void Start()
         {
             while (true)
             {
-                Thread.Sleep(10);
+                Thread.Sleep(1000);
 
-                /*
-                 * Don't limit your apps unless it is really necessary.
-                 * Imagine if gmail clients were unable to send mails to other mail services like hotmail or zoho.
-                 * That's an unnecessary limitation, don't you think?
-                if (CountdownTime > 86400)
-                {
-                    Console.WriteLine("Time choosen is out of bound");
-                    break;
-                }
-                */
 
                 if (Hours == 0 && Minutes == 0 && Seconds == 0)
                     break;
@@ -84,15 +75,6 @@ namespace Power.Countdown
                 if (Seconds == 0) Seconds = 60;
                 Seconds--;
 
-                //You can't create a function within a function.
-
-                //$"Integer padded to two places: {x:D2}
-                // Console.WriteLine($"{Hours:D2}:{Minutes:D2}:{Seconds:D2}"); <= Clever, we'll be using this in the main app.
-
-                // Cute APIs like string.Format() may not always be available.
-                // Imagine if you were writing CMD code. What would you do??
-                // Programmers should know how to improvise when necessary.
-
                 string hours = DoubleNumber(Hours),
                     minutes = DoubleNumber(Minutes),
                     seconds = DoubleNumber(Seconds);
@@ -102,25 +84,27 @@ namespace Power.Countdown
             }
             Console.WriteLine("Time is up!!!");
 
-            // SoundPlayer player = new SoundPlayer(Properties.Resources.ringin);
-            // player.PlaySync();
-            // player.PlaySync();
-
             Audio();
             Audio();
             Audio();
 
-            // Process.Start("shutdown", "/s /f /t 20");
         }
+        /// <summary>
+        /// The method to make each property a double digit (e.g 00:00:00)
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
             string DoubleNumber(int number)
             {
                 if (number <= 9) return "0" + number;
                 return number.ToString();
             }
+        /// <summary>
+        /// Method for making sound
+        /// </summary>
             void Audio()
             {
                 SoundPlayer audio = new SoundPlayer(Properties.Resources.ringin);
-                // new SoundPlayer(@"C:/Users/David/source/repos/Power.Console/Music/ringin.wav");
                 audio.PlaySync();
             }
         #endregion
