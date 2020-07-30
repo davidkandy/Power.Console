@@ -98,29 +98,31 @@ namespace Power.Countdown
                     seconds = DoubleNumber(Seconds);
 
                 Console.WriteLine($"{hours}:{minutes}:{seconds}");
+
             }
             Console.WriteLine("Time is up!!!");
-            Audio();
-            Audio();
-            Audio();
+
+            SoundPlayer player = new SoundPlayer(Properties.Resources.ringin);
+            player.PlaySync();
+
+            //Audio();
+            //Audio();
+            //Audio();
 
             // Process.Start("shutdown", "/s /f /t 20");
         }
-
-
-        void Audio()
-        {
-            SoundPlayer audio = new SoundPlayer("C:/Users/David/source/repos/Power.Console/Music/ringin.wav");
-            audio.PlaySync();
-        }
-
-        private string DoubleNumber(int number)
-        {
-            if (number <= 9) return "0" + number;
-            return number.ToString();
-        }
+            string DoubleNumber(int number)
+            {
+                if (number <= 9) return "0" + number;
+                return number.ToString();
+            }
+            void Audio()
+            {
+                SoundPlayer audio = new SoundPlayer(@"C:/Users/David/source/repos/Power.Console/Music/ringin.wav");
+                audio.PlaySync();
+            }
+        #endregion
     }
-    #endregion
 
 }
 

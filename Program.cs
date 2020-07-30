@@ -7,14 +7,16 @@ namespace Power
 {
     public class Program
     {
-        private IEnumerable<string> args;
-
         static void Main(string[] args)
         {
-            
             Console.WriteLine("Hello!!! Welcome to Power.Countdown");
 
-            Console.WriteLine($"Hey, did you just say '{args.ElementAtOrDefault(0)}'?");
+            // Console.WriteLine($"Hey, did you just say '{args.ElementAtOrDefault(0)}'?");
+
+
+            if (!ProcessArguments(args))
+                return;
+
 
             Console.WriteLine("Set the timer below: ");
             Console.WriteLine("");
@@ -41,15 +43,53 @@ namespace Power
 
             countdown.Start();
 
-            ProcessArgs(string[], args);
+            // ProcessArgs(string[], args);
         }
 
+        /*
         void ProcessArgs()
         {
             foreach (string argument in args)
             {
                 Console.WriteLine(argument);
             }
+        }
+        */
+        static bool ProcessArguments(string[] args)
+        {
+            if (args.Length <= 0)
+                return true;
+
+            for (int i = 0; i < args.Length; i++)
+            {
+                string arg = args[i];
+                if (arg == "-s")
+                {
+                    string number = args[i + 1];
+                    int.TryParse(number, out int seconds);
+                    var countdown = new PowerCountdown(seconds);
+                    countdown.Start();
+                }
+            }
+
+            // if (args.Contains("-s"))
+            //var countdown = new PowerCountdown(seconds); // Call the countdown from here...maybe
+            //countdown.Start();
+            // else
+            {
+                DisplayUsageInstructions();
+                return false;
+            }
+        }
+
+        static void DisplayUsageInstructions()
+        {
+            Console.WriteLine("Welcome to Power.Console");
+            Console.WriteLine("USAGE: ");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("-s [CountdownSeconds]");
+            Console.WriteLine("");
         }
 
     }
