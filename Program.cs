@@ -7,16 +7,11 @@ namespace Power
 {
     public class Program
     {
-<<<<<<< HEAD
-        static void Main(string[] args)
-        {
-=======
         // This was a little clever....
         private IEnumerable<string> args;
 
         static void Main(string[] args)
         {            
->>>>>>> 502eff8fb90fe4011636f319cd0793544dca9c09
             Console.WriteLine("Hello!!! Welcome to Power.Countdown");
 
             // Console.WriteLine($"Hey, did you just say '{args.ElementAtOrDefault(0)}'?");
@@ -63,15 +58,10 @@ namespace Power
             }
         }
         */
-<<<<<<< HEAD
-=======
-
->>>>>>> 502eff8fb90fe4011636f319cd0793544dca9c09
         static bool ProcessArguments(string[] args)
         {
             if (args.Length <= 0)
                 return true;
-<<<<<<< HEAD
 
             for (int i = 0; i < args.Length; i++)
             {
@@ -82,23 +72,13 @@ namespace Power
                     int.TryParse(number, out int seconds);
                     var countdown = new PowerCountdown(seconds);
                     countdown.Start();
+
+                    return false;
                 }
             }
 
-            // if (args.Contains("-s"))
-            //var countdown = new PowerCountdown(seconds); // Call the countdown from here...maybe
-            //countdown.Start();
-=======
-            
-            // if (args.Contains("-s"))
-            // var countdown = new PowerCountdown(hours, minutes, seconds); // Call the countdown from here...maybe
-            // countdown.Start()
->>>>>>> 502eff8fb90fe4011636f319cd0793544dca9c09
-            // else
-            {
-                DisplayUsageInstructions();
-                return false;
-            }
+            DisplayUsageInstructions();
+            return false;
         }
 
         static void DisplayUsageInstructions()

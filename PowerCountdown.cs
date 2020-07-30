@@ -102,12 +102,13 @@ namespace Power.Countdown
             }
             Console.WriteLine("Time is up!!!");
 
-            SoundPlayer player = new SoundPlayer(Properties.Resources.ringin);
-            player.PlaySync();
+            // SoundPlayer player = new SoundPlayer(Properties.Resources.ringin);
+            // player.PlaySync();
+            // player.PlaySync();
 
-            //Audio();
-            //Audio();
-            //Audio();
+            Audio();
+            Audio();
+            Audio();
 
             // Process.Start("shutdown", "/s /f /t 20");
         }
@@ -118,7 +119,8 @@ namespace Power.Countdown
             }
             void Audio()
             {
-                SoundPlayer audio = new SoundPlayer(@"C:/Users/David/source/repos/Power.Console/Music/ringin.wav");
+                SoundPlayer audio = new SoundPlayer(Properties.Resources.ringin);
+                // new SoundPlayer(@"C:/Users/David/source/repos/Power.Console/Music/ringin.wav");
                 audio.PlaySync();
             }
         #endregion
